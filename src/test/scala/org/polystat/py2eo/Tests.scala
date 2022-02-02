@@ -217,7 +217,7 @@ class Tests {
     )
     for (f <- futures) Await.result(f, Duration.Inf)
 
-    assume(System.getProperty("os.name") == "Linux")
+    assume(System.getProperty("os.name") == "Linux" || System.getProperty("os.name") == "Mac OS X")
     assert(0 == Process("./configure", cpython).!)
     val nprocessors = Runtime.getRuntime.availableProcessors()
     println(s"have $nprocessors processors")
