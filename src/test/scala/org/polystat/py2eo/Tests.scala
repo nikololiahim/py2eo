@@ -333,5 +333,14 @@ class Tests {
     })
     res
   }
+
+  @Test def arithmeticsTest():Unit = {
+    val test = new File(testsPrefix + "arithmetics.py")
+    def db = debugPrinter(test)(_, _)
+
+    val eoText = PrintEO.printTest("arithmeticsTest", Parse.parse(test, db), List())
+
+    writeFile(test, "genEO", ".eo", eoText.mkString("\n"))
+  }
 }
 
