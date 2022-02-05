@@ -127,7 +127,7 @@ object PrintEO {
         List(s"$name.write") ++
           indent(s"[$args1]" ::
             indent(locals.map(name => s"memory > $name").toList ++ List("seq > @") ++ indent(body1)))
-      case Return(e, _) => e.toList.map(printExpr(_))
+      case Return(e, _) => e.toList.map(printExpr)
       case u: Unsupported =>
         val e1 = CallIndex(true, Expression.Ident("unsupported", new GeneralAnnotation()), u.es.map(e => (None, e._2)), u.ann.pos)
         val head = printExpr(e1)
@@ -159,15 +159,5 @@ object PrintEO {
   }
 
   def printTest(moduleName: String, st: Statement, hackPreface: Text): Text =
-  {
-    val pyIntDef: BufferedSource = Source.fromFile("src/main/eo/pyInt.eo")
-    val pyFloatDef: BufferedSource = Source.fromFile("src/main/eo/pyFloat.eo")
-
-    val result = standardTestPreface ++ pyIntDef.getLines.toList ++ List("") ++ pyFloatDef.getLines.toList ++ List("") ++ printSt(moduleName, st, hackPreface)
-
-    pyIntDef.close
-    pyFloatDef.close
-
-    result
-  }
+    standardTestPreface ++ printSt(moduleName, st, hackPreface)
 }
