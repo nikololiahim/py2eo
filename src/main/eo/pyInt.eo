@@ -1,13 +1,16 @@
++package org.eolang
++rt jvm org.eolang:eo-runtime:0.0.0
+
 [value] > pyInt
   # Absolute value of $ (i.e., with no sign)
   [] > abs
-    pyInt ^.value.abs > @
+    pyInt (^.value.abs) > @
 
   # Sum of $ and x
   [x] > add
     if. > @
       x.class.eq "float"
-      pyFloat (^.float.value.add x.value)
+      ^.float.add x
       pyInt (^.value.add x.value)
 
   # AND
@@ -30,12 +33,12 @@
   [x] > eq
     if. > @
       x.class.eq "float"
-      ^.float.value.eq x.value
+      ^.float.eq x
       ^.value.eq x.value
 
   # Converts this to float
   [] > float
-    pyFloat ^.value.as-float > @
+    pyFloat (^.value.as-float) > @
 
   # Floor of $
   [] > floor
@@ -45,21 +48,21 @@
   [x] > floordiv
     if. > @
       x.class.eq "float"
-      pyFloat (^.float.value.div x.value)
+      ^.float.div x
       pyInt (^.value.div x.value)
 
   # Tests that $ ≥ x
   [x] > ge
     if. > @
       x.class.eq "float"
-      ^.float.value.geq x.value
+      ^.float.ge x
       ^.value.geq x.value
 
   # Tests that $ > x
   [x] > gt
     if. > @
       x.class.eq "float"
-      ^.float.value.greater x.value
+      ^.float.gt x
       ^.value.greater x.value
 
   # Converts this to int
@@ -68,24 +71,24 @@
 
   # Calculate bitwise not
   [] > invert
-    pyInt ^.value.as-bytes.not.as-int > @
+    pyInt (^.value.as-bytes.not.as-int) > @
 
   # Tests that $ ≤ x
   [x] > le
     if. > @
       x.class.eq "float"
-      ^.float.value.leq x.value
+      ^.float.le x
       ^.value.leq x.value
 
   # Calculate bitwise left shift
   [x] > lshift
-    pyInt (^.value.as-bytes.left x.value).as-int > @
+    pyInt ((^.value.as-bytes.left x.value).as-int) > @
 
   # Tests that $ < x
   [x] > lt
     if. > @
       x.class.eq "float"
-      ^.float.value.less x.value
+      ^.float.lt x
       ^.value.less x.value
 
   # Calculate MOD
@@ -96,33 +99,33 @@
   [x] > mul
     if. > @
       x.class.eq "float"
-      pyFloat (^.float.value.mul x.value)
+      ^.float.mul x
       pyInt (^.value.mul x.value)
 
   # Tests that $ ≠ x
   [x] > ne
     if. > @
       x.class.eq "float"
-      ^.float.value.neq x.value
+      ^.float.ne x
       ^.value.neq x.value
 
   # Negation of $
   [] > neg
-    pyInt ^.value.neg > @
+    pyInt (^.value.neg) > @
 
   # NOT
   [] > not
-    pyInt ^.bool.not.as-int > @
+    pyInt (^.bool.not.as-int) > @
 
   # OR
   [x] > or
-    pyInt (^.bool.or x.bool).as-int > @
+    pyInt ((^.bool.or x.bool).as-int) > @
 
   # x'th power of $
   [x] > pow
     if. > @
       x.class.eq "float"
-      pyFloat (^.float.value.pow x.value)
+      ^.float.pow x
       pyInt (^.value.pow x.value)
 
   # Round $
@@ -131,7 +134,7 @@
 
   # Calculate bitwise right shift
   [x] > rshift
-    pyInt (^.value.as-bytes.right x.value).as-int > @
+    pyInt ((^.value.as-bytes.right x.value).as-int) > @
 
   # Converts this to string
   [] > str
@@ -141,7 +144,7 @@
   [x] > sub
     if. > @
       x.class.eq "float"
-      pyFloat (^.float.value.sub x.value)
+      ^.float.sub x
       pyInt (^.value.sub x.value)
 
   # Truncate $

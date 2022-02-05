@@ -1,11 +1,14 @@
++package org.eolang
++rt jvm org.eolang:eo-runtime:0.0.0
+
 [value] > pyFloat
   # Absolute value of $ (i.e., with no sign)
   [] > abs
-    pyFloat ^.value.abs > @
+    pyFloat (^.value.abs) > @
 
   # Sum of $ and x
   [x] > add
-    pyFloat (^.value.add x.float.value) > @
+    pyFloat (^.value.add (x.float.value)) > @
 
   # Converts this to bool
   [] > bool
@@ -24,7 +27,7 @@
 
   # Tests that $ = x
   [x] > eq
-    ^.value.eq x.float.value > @
+    ^.value.eq (x.float.value) > @
 
   # Converts this to float
   [] > float
@@ -51,15 +54,15 @@
 
   # Converts this to int
   [] > int
-    pyInt ^.value.as-int > @
+    pyInt (^.value.as-int) > @
 
   # Tests that $ ≤ x
   [x] > le
-    ^.value.leq x.float.value > @
+    ^.value.leq (x.float.value) > @
 
   # Tests that $ < x
   [x] > lt
-    ^.value.less x.float.value > @
+    ^.value.less (x.float.value) > @
 
   # Multiplication of $ and x
   [x] > mul
@@ -67,15 +70,15 @@
 
   # Tests that $ ≠ x
   [x] > ne
-    ^.value.neq x.float.value > @
+    ^.value.neq (x.float.value) > @
 
   # Negation of $
   [] > neg
-    pyFloat ^.value.neg > @
+    pyFloat (^.value.neg) > @
 
   # NOT
   [] > not
-    pyFloat ^.bool.not.as-float > @
+    pyFloat (^.bool.not.as-float) > @
 
   # x'th power of $
   [x] > pow
@@ -91,7 +94,7 @@
 
   # Truncate $
   [] > trunc
-    pyInt ^.value.as-int > @
+    pyInt (^.value.as-int) > @
 
   # Tests that $ is integer
   [] > is_integer
