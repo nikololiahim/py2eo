@@ -18,26 +18,27 @@
                 <artifactId>eo-maven-plugin</artifactId>
                 <version>${eolang.version}</version>
                 <executions>
-					<execution>
-						<id>compile</id>
+                    <execution>
+                        <id>compile</id>
                         <goals>
                             <goal>register</goal>
                             <goal>assemble</goal>
                             <goal>transpile</goal>
                         </goals>
-						<configuration>
+                        <configuration>
                             <sourcesDir>${project.baseDir}/../../</sourcesDir>
                             <includeSources>
+                                <glob>src/test/resources/org/polystat/py2eo/genEO/*.eo</glob>
                                 <glob>src/test/resources/org/polystat/py2eo/genCageEO/*.eo</glob>
                                 <glob>src/test/resources/org/polystat/py2eo/simple_tests/assignCheck/genCageEO/*.eo</glob>
                                 <glob>src/test/resources/org/polystat/py2eo/simple_tests/ifCheck/genCageEO/*.eo</glob>
                                 <glob>src/test/resources/org/polystat/py2eo/simple_tests/whileCheck/genCageEO/*.eo</glob>
                             </includeSources>
-						  <targetDir>${project.basedir}/target/eo-test</targetDir>
-						  <addSourcesRoot>false</addSourcesRoot>
-						  <addTestSourcesRoot>true</addTestSourcesRoot>
-						  <generatedDir>${project.basedir}/target/generated-test-sources</generatedDir>
-						</configuration>
+                            <targetDir>${project.basedir}/target/eo-test</targetDir>
+                            <addSourcesRoot>false</addSourcesRoot>
+                            <addTestSourcesRoot>true</addTestSourcesRoot>
+                            <generatedDir>${project.basedir}/target/generated-test-sources</generatedDir>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
